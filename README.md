@@ -14,6 +14,7 @@ This project was carried out as part of freelance contract for one of the automo
 
 ### Technologies
 * Python 
+* Flask
 
 ## Getting Started
 
