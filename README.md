@@ -5,7 +5,7 @@
 ## Project Objective
 This project was initially carried out as part of freelance contract for one of the automotive players in Myanmar back in 2019. Until recently, due to import restrictions, Myanmar's automotive market was primarily dominated by the second-hand cars. As a result, the market lacked transparency and a proper pricing mechanism as the transactions were mainly handled by unofficial car brokers. The objective of the project was to understand the factors influencing the second-hand car prices and to estimate the car prices based on their attribtues. The end goal was to develop a data-driven fair pricing mechanism for an automotive platform.
 
-Disclaimer: public data was used to recreate the project for portfolio purposes
+Disclaimer: public data was used to recreate the project for portfolio purpose
 
 ### Skills Used
 * Data Collection
@@ -76,9 +76,11 @@ The final score on test set is R2 - 0.834, MAE - 1,921
 
 ## Challenges and Further Model Improvement
 
-- Data Availability : The dataset comprises only 500 data points, which is insufficient to cover all car models. This limitation constrains the model's ability to generalize across the full spectrum of vehicles.
-
 - Overfitting issues: There is a model performance gap (6%) between the test set and the training set. Despite efforts in parameter tuning to reduce overfitting, this gap persisted, likely due to the small sample size and imbalanced class distribution among car models. Given that Toyota models constitute the majority of the dataset, the model may struggle to generalize effectively to less represented or unseen models.
+
+- Interval Estimates: The model should be modified to provide interval estimates rather than point estimates to better align with user expectations. This adjustment would reflect high variability in resale values more accurately.
+
+- Additional Features: The initial model lacks several critical features, such as the car's condition, which can significantly impact the resale prices. Incorporating these factors is essential, as it is challenging to produce exact point estimates without them.
 
 ## Data Sources
 
