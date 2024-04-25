@@ -20,11 +20,10 @@ Disclaimer: public data was used to recreate the project for portfolio purposes
 
 ## Getting Started
 
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
-2. Raw Data is available [here](https://github.com/khinydnlin/car_auction_price_predictions/blob/main/dataset.csv) within this repo.  
-3. Data processing and modelling scripts are documented in a [Jupyter notebook](https://github.com/khinydnlin/car_auction_price_predictions/blob/main/Car%20Auction%20Price%20Predictions.ipynb).
-4. ML pipeline can be found [here](https://github.com/khinydnlin/car_auction_price_predictions/blob/main/ml_pipeline.py)
-5. The project findings and other details can be found below:
+1. Data processing and modelling scripts are documented in a [Jupyter notebook](https://github.com/khinydnlin/car_auction_price_predictions/blob/main/Car%20Auction%20Price%20Predictions.ipynb).
+2. ML pipeline can be found [here](https://github.com/khinydnlin/car_auction_price_predictions/blob/main/ml_pipeline.py)
+3. Script for creating a web app is available here.
+4. The project findings and other details can be found below:
 
 ## Project Description
 
