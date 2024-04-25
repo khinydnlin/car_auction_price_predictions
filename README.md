@@ -5,7 +5,7 @@
 ## Project Objective
 This project was initially carried out as part of freelance contract for one of the automotive players in Myanmar back in 2019. Until recently, due to import restrictions, Myanmar's automotive market was primarily dominated by the second-hand cars. As a result, the market lacked transparency and a proper pricing mechanism as the transactions were mainly handled by unofficial car brokers. The objective of the project was to understand the factors influencing the second-hand car prices and to estimate the car prices based on their attribtues. The end goal was to develop a data-driven fair pricing mechanism for an automotive platform.
 
-Disclaimer: simulated data was used to protect confidentiality
+Disclaimer: public data was used to recreate the project for portfolio purposes
 
 ### Skills Used
 * Data Collection
@@ -28,26 +28,13 @@ Disclaimer: simulated data was used to protect confidentiality
 
 ## Project Description
 
-### Data Sources
+## Sample Model Outcomes
 
-The data was manually collected from the major car brokers in the market because of the lack of public data on resale prices. The following featuers were collected:
+**Resale Value Estimates**
 
-| Data                  |
-| ----------------------|
-| car brand             |
-| car make              |
-| engine power          | 
-| mileage in km         |  
-| colour                |
-| steering position     |
-| transimission type    |
-| fuel type             |
-| car body type         |
-| price in MMK          |
-| price in USD          |
-*Note: 1 USD - 1,400 Myanmar Kyats (MMK) exchange rate was used
+![image](https://github.com/khinydnlin/car_auction_price_predictions/assets/145341635/e3728155-f9d9-4f84-a817-4f52699bb865)
 
-### Machine Learning Model Development 
+Created using Flask - originally deployed on Heroku
 
 #### Insights from Exploratory Data Analysis
 
@@ -57,7 +44,8 @@ The data was manually collected from the major car brokers in the market because
 - Black cars tend to have higher resale value compared to other colours.
 - SUV body types cars are more likely to have the highest resale prices,followed by vans and sedans.
 - Although it was expected that the prices would be determined by age and mileage, correlation results suggest that the resale values have weak direct relationships with these features. Interesingly, data visualization suggests that age seems to be a secondary influential factor after the car brand and model. This indicates the potential non-linear relationship between the car prices and available features.
-  
+
+### Machine Learning Model Development 
 
 #### Feature Engineering
 
@@ -92,4 +80,21 @@ The final score on test set is R2 - 0.834, MAE - 1,921
 
 - Overfitting issues: There is a model performance gap (6%) between the test set and the training set. Despite efforts in parameter tuning to reduce overfitting, this gap persisted, likely due to the small sample size and imbalanced class distribution among car models. Given that Toyota models constitute the majority of the dataset, the model may struggle to generalize effectively to less represented or unseen models.
 
+## Data Sources
 
+The data was manually collected from the major car brokers in the market because of the lack of public data on resale prices at the time. The following featuers were collected:
+
+| Data                  |
+| ----------------------|
+| car brand             |
+| car model             |
+| engine power          | 
+| mileage in km         |  
+| colour                |
+| steering position     |
+| transimission type    |
+| fuel type             |
+| car body type         |
+| price in MMK          |
+| price in USD          |
+*Note: 1 USD - 1,400 Myanmar Kyats (MMK) exchange rate was used
