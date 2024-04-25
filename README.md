@@ -32,7 +32,7 @@ Disclaimer: public data was used to recreate the project for portfolio purpose
 
 **Resale Value Estimates**
 
-![image](https://github.com/khinydnlin/car_auction_price_predictions/assets/145341635/e3728155-f9d9-4f84-a817-4f52699bb865)
+![image](https://github.com/khinydnlin/car_auction_price_predictions/assets/145341635/4eabb296-77d5-4989-978b-785978ca6b74)
 
 Created using Flask - originally deployed on Heroku
 
