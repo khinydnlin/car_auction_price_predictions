@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Auction Price Predictions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Sets the font for easier reading */
+            background-color: #f8f8f2; /* Light off-white (light brownish) background */
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+            flex-direction: column;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            gap: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners for the form */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+            width: 300px; /* Sets a specific width for the form */
+        }
+        label, select, input, button {
+            display: block; /* Makes each form element appear on a new line */
+            width: 100%; /* Full width of the form */
+            margin-bottom: 10px; /* Adds space between form elements */
+        }
+        button {
+            background-color: #4CAF50; /* Green background for the button */
+            color: white; /* White text color */
+            padding: 10px; /* Padding inside the button */
+            border: none; /* No border for the button */
+            border-radius: 5px; /* Rounded corners for the button */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var brandSelect = document.getElementById('car_brand');
+            var makeSelect = document.getElementById('car_make');
+            var bodyTypeSelect = document.getElementById('body_type')
+            var bodyTypeSection = document.getElementById('body_type_section');
+
+
+            var carMakes = {
+                'toyota': ['Alphard', 'Belta', 'Corolla', 'Crown', 'Harrier', 'Kluger', 'Mark 2', 'Wish'],
+                'honda': ['Fit', 'Insight', 'CR-V'],
+                'mitsubishi': ['Fuso Canter', 'Pajero', 'RVR'],
+                'nissan': ['Ad-van', 'Juke', 'Qashqai'],
+                'suzuki': ['Swift', 'Ertiga', 'Carry'],
+                'daihatsu': ['Hijet']
+            };
+
+            var bodyTypes = {
+                'Alphard': 'Van',
+                'Belta': 'Sedan',
+                'Corolla': 'Sedan',
+                'Crown': 'Sedan',
+                'Harrier': 'SUV',
+                'Kluger': 'SUV',
+                'Mark 2': 'Sedan',
+                'Wish': 'Van',
+                'Fit': 'Mini-Van',
+                'Insight': 'Van',
+                'CR-V': 'SUV',
+                'Fuso Canter': 'Truck',
+                'Pajero': 'SUV',
+                'Rvr': 'SUV',
+                'Ad-van': 'Van',
+                'Juke': 'SUV',
+                'Qashqai': 'SUV',
+                'Swift': 'Mini-Van',
+                'Ertiga': 'Van',
+                'Carry': 'Truck',
+                'Hijet': 'Truck'
+            };
+
+            bodyTypeSection.style.display = 'none';
+
+            brandSelect.addEventListener('change', function() {
+                makeSelect.innerHTML = '';
+                var brand = this.value.toLowerCase();
+                if (brand in carMakes) {
+                    carMakes[brand].forEach(function(make) {
+                        var option = document.createElement('option');
+                        option.value = make;
+                        option.textContent = make;
+                        makeSelect.appendChild(option);
+                });
+                makeSelect.dispatchEvent(new Event('change')); // Automatically set and hide body type
+                }
+            });
+
+            makeSelect.addEventListener('change', function() {
+                var model = this.value;
+                if (model in bodyTypes) {
+                    bodyTypeSelect.value = bodyTypes[model]; // Set body type based on model
+                    bodyTypeSection.style.display = 'none'; // Continue to hide the body type section
+                }
+            });
+
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();  // Prevent default form submission
+                const formData = new FormData(form);
+                fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('predictionResult').textContent = 'The predicted price is: ' + data.prediction;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+    </script>
+</head>
+<body>
+    <h1>Car Auction Price Predictions</h1>
+    <form action="/predict" method="post">
+        <label for="car_brand">Brand:</label>
+        <select name="car_brand" id="car_brand">
+            <option type="text">Select a brand</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Mitsubishi">Mitsubishi</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Suzuki">Suzuki</option>
+            <option value="Daihatsu">Daihatsu</option>
+        </select><br>
+
+        <label for="car_make">Model:</label>
+        <select name="car_make" id="car_make">
+            <!-- Options will be filled based on brand selection -->
+        </select><br>
+
+        <div id="body_type_section">
+            <label for="body_type">Body Type:</label>
+            <select name="body_type" id="body_type">
+                <option value="Mini-Van">Mini-Van</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Truck">Truck</option>
+                <option value="Van">Van</option>
+            </select><br>
+        </div>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year"><br>
+
+        <label for="engine_power">Engine Power:</label>
+        <select name="engine_power" id="engine_power">
+            <option value="1">1000 cc</option>
+            <option value="1.2">1200 cc</option>
+            <option value="1.3">1300 cc</option>
+            <option value="1.5">1500 cc</option>
+            <option value="1.8">1800 cc</option>
+            <option value="2">2000 cc</option>
+            <option value="2.2">2200 cc</option>
+            <option value="2.4">2400 cc</option>
+            <option value="2.5">2500 cc</option>
+            <option value="2.8">2800 cc</option>
+            <option value="3">3000 cc</option>
+            <option value="3.2">3200 cc</option>
+            <option value="4.9">4900 cc</option>
+        </select><br>
+
+        <label for="mileage">Mileage (km):</label>
+        <input type="number" id="mileage" name="mileage"><br>
+
+        <label for="transmission">Transmission Type:</label>
+        <select name="transmission" id="transmission">
+            <option value="auto">Auto</option>
+            <option value="manual">Manual</option>
+        </select><br>
+
+        <button type="submit">Predict Price (USD)</button>
+    </form>
+    <p id="predictionResult"></p>  <!-- Placeholder for prediction result -->
+</body>
+</html>
