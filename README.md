@@ -17,6 +17,7 @@ Disclaimer: public data was used to recreate the project for portfolio purposes
 ### Technologies
 * Python 
 * Flask
+* Heroku
 
 ## Getting Started
 
